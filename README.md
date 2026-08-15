@@ -3,6 +3,7 @@
 Reproducible files for my development environment.
 
 ```sh
+nix-shell -p git
 git clone https://github.com/julian-computes/my-devbox.git ~/.config/my-devbox
 ~/.config/my-devbox/scripts/bootstrap.sh
 ```
