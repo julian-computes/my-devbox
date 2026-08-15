@@ -30,7 +30,10 @@
   # Fish loads every *.fish file in conf.d on startup.
   xdg.configFile."fish/conf.d/aliases.fish".source = ./fish/aliases.fish;
 
-  xdg.configFile."herdr/config.toml".source = ./herdr/config.toml;
+  xdg.configFile."herdr/config.toml" = {
+    source = ./herdr/config.toml;
+    force = true;
+  };
 
   # Keep repository instructions available to locally run coding agents.
   home.file."AGENTS.md".source = ./AGENTS.md;

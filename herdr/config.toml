@@ -1,5 +1,6 @@
 onboarding = false
 
 [keys]
-previous_workspace = "alt+k"
-next_workspace = "alt+j"
+previous_workspace = "prefix+k"
+next_workspace = "prefix+j"
+switch_workspace = "prefix+1..9"
