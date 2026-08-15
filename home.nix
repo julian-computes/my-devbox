@@ -22,8 +22,20 @@
     package="@earendil-works/pi-coding-agent@0.84.2"
 
     if ! pi --version 2>/dev/null | grep -Fxq "0.84.2"; then
+      for attempt in $(seq 1 12); do
+        if ${pkgs.curl}/bin/curl --fail --silent --show-error \
+          --connect-timeout 5 --max-time 10 \
+          https://registry.npmjs.org/@earendil-works%2Fpi-coding-agent >/dev/null; then
+          break
+        elif [ "$attempt" -eq 12 ]; then
+          echo "npm registry did not become available" >&2
+          exit 1
+        fi
+        sleep 2
+      done
+
       for attempt in $(seq 1 5); do
-        if bun add --global --exact "$package"; then
+        if ${pkgs.coreutils}/bin/timeout 60 bun add --global --exact "$package"; then
           break
         elif [ "$attempt" -eq 5 ]; then
           exit 1

@@ -10,4 +10,10 @@
 
   programs.fish.enable = true;
   users.users."@USERNAME@".shell = pkgs.fish;
+
+  # Pi extensions are downloaded during Home Manager activation.
+  systemd.services."home-manager-@USERNAME@" = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+  };
 }

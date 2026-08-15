@@ -16,6 +16,10 @@ in
       builtins.elem (lib.getName pkg) [ "claude-code" ];
 
     programs.fish.enable = true;
+    systemd.services.home-manager-devbox = {
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+    };
 
     users.users.devbox = {
       isNormalUser = true;
