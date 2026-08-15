@@ -15,9 +15,18 @@
   programs.bash.enable = true;
   programs.fish.enable = true;
 
-  # Pi installs npm extensions into ~/.pi; pin and provision Plannotator.
-  # node-pty, a transitive dependency, builds from source on aarch64 Linux.
-  home.activation.installPlannotatorPiExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  # Provision Pi before installing its extensions. node-pty, a transitive
+  # dependency of Plannotator, builds from source on aarch64 Linux.
+  home.activation.installPiCodingAgent = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    export PATH="${pkgs.nodejs}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
+    package="@earendil-works/pi-coding-agent@0.84.2"
+
+    if ! pi --version 2>/dev/null | grep -Fxq "0.84.2"; then
+      bun add --global --exact "$package"
+    fi
+  '';
+
+  home.activation.installPlannotatorPiExtension = lib.hm.dag.entryAfter [ "installPiCodingAgent" ] ''
     export PATH="${pkgs.nodejs}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
     settings="${config.home.homeDirectory}/.pi/agent/settings.json"
     package="npm:@plannotator/pi-extension@0.27.3"
@@ -28,7 +37,7 @@
   '';
 
   # Pi extension for FFF, which replaces Pi's built-in find and grep tools.
-  home.activation.installPiFffExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.installPiFffExtension = lib.hm.dag.entryAfter [ "installPiCodingAgent" ] ''
     export PATH="${pkgs.nodejs}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
     settings="${config.home.homeDirectory}/.pi/agent/settings.json"
     package="npm:@ff-labs/pi-fff@0.10.3"
