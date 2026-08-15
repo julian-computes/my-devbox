@@ -30,6 +30,9 @@
   # Fish loads every *.fish file in conf.d on startup.
   xdg.configFile."fish/conf.d/aliases.fish".source = ./fish/aliases.fish;
 
+  # Keep repository instructions available to locally run coding agents.
+  home.file."AGENTS.md".source = ./AGENTS.md;
+
   xdg.configFile."nvim" = {
     source = ./nvim;
     recursive = true;
