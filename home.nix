@@ -46,8 +46,9 @@
     force = true;
   };
 
-  # Keep repository instructions available to locally run coding agents.
-  home.file."AGENTS.md".source = ./AGENTS.md;
+  # Keep available-tool instructions and reusable skills accessible to coding agents.
+  home.file."AGENTS.md".source = ./agent-instructions.md;
+  home.file.".agents/skills".source = ./skills;
 
   xdg.configFile."nvim" = {
     source = ./nvim;

@@ -12,6 +12,7 @@
     bat
     bottom
     lazygit
+    tshark
     gcc
     gnumake
     python3

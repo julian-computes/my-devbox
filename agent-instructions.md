@@ -1,0 +1,12 @@
+# Available tools
+
+Useful command-line tools installed by this development environment:
+
+- Search and navigation: `rg`, `fd`, `fff`, `yazi`, and `zoxide`.
+- Interactive filtering and viewing: `sk` (skim) and `bat`.
+- System monitoring: `btm` (bottom).
+- Git and GitHub: `git`, `gh`, and `lazygit`.
+- Development: `python3`, `uv`, `bun`, `node`, `gcc`, and `gnumake`.
+- Network packet inspection: `tshark`.
+- Coding agents: `pi`, `claude`, and `codex`.
+- Terminal multiplexer: `herdr`. Run `herdr --skill` before using it.
