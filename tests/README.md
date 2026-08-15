@@ -6,8 +6,9 @@ for a new `devbox` user, and verifies Pi plus its extensions were installed.
 Run it from the repository root:
 
 ```sh
-nix-build tests/default.nix
+nix-build --option sandbox false tests/default.nix
 ```
 
 The test uses the Nixpkgs and Home Manager channels in `NIX_PATH`. Use the
-NixOS 25.11 and matching Home Manager channels.
+NixOS 25.11 and matching Home Manager channels. It deliberately disables the
+Nix build sandbox so the VM can access npm and install the real Pi packages.
