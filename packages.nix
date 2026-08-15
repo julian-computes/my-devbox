@@ -3,6 +3,8 @@
 {
   home.packages = with pkgs; [
     neovim
+    helix
+    micro
     git
     ripgrep
     fd
@@ -18,6 +20,8 @@
     gnumake
     python3
     uv
+    sqlite
+    duckdb
     bun
     nodejs
     gh

@@ -5,4 +5,4 @@ reload:
     ./scripts/bootstrap.sh
 
 test:
-    nix-build --option sandbox false tests/default.nix
+    sudo nix-build --option sandbox false tests/default.nix
