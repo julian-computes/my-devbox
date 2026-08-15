@@ -27,6 +27,9 @@
     fi
   '';
 
+  # Fish loads every *.fish file in conf.d on startup.
+  xdg.configFile."fish/conf.d/aliases.fish".source = ./fish/aliases.fish;
+
   xdg.configFile."nvim" = {
     source = ./nvim;
     recursive = true;
