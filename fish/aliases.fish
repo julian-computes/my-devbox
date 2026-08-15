@@ -3,3 +3,7 @@
 alias gsw='git switch'
 alias gst='git status'
 alias gco='git checkout'
+
+function rebuild-my-devbox --description 'Rebuild NixOS from my-devbox'
+    "$HOME/.config/my-devbox/scripts/bootstrap.sh"
+end
