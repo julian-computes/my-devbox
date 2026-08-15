@@ -12,13 +12,6 @@ in
       ../programs.nix
     ];
 
-    # The test driver network is isolated. Add a QEMU user-mode NIC so Pi can
-    # download its real npm packages during Home Manager activation.
-    virtualisation.qemu.options = [
-      "-netdev user,id=internet"
-      "-device virtio-net-pci,netdev=internet"
-    ];
-
     nixpkgs.config.allowUnfreePredicate = pkg:
       builtins.elem (lib.getName pkg) [ "claude-code" ];
 

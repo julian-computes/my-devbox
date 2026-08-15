@@ -22,7 +22,14 @@
     package="@earendil-works/pi-coding-agent@0.84.2"
 
     if ! pi --version 2>/dev/null | grep -Fxq "0.84.2"; then
-      bun add --global --exact "$package"
+      for attempt in $(seq 1 5); do
+        if bun add --global --exact "$package"; then
+          break
+        elif [ "$attempt" -eq 5 ]; then
+          exit 1
+        fi
+        sleep 2
+      done
     fi
   '';
 
