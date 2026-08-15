@@ -6,6 +6,12 @@
     git
     ripgrep
     fd
+    fff
+    yazi
+    skim
+    bat
+    bottom
+    lazygit
     gcc
     gnumake
     python3

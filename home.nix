@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -18,9 +18,20 @@
   # Pi installs npm extensions into ~/.pi; pin and provision Plannotator.
   # node-pty, a transitive dependency, builds from source on aarch64 Linux.
   home.activation.installPlannotatorPiExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    export PATH="${config.home.homeDirectory}/.bun/bin:$PATH"
+    export PATH="${pkgs.nodejs}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
     settings="${config.home.homeDirectory}/.pi/agent/settings.json"
     package="npm:@plannotator/pi-extension@0.27.3"
+
+    if ! grep -Fq "$package" "$settings" 2>/dev/null; then
+      pi install "$package"
+    fi
+  '';
+
+  # Pi extension for FFF, which replaces Pi's built-in find and grep tools.
+  home.activation.installPiFffExtension = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    export PATH="${pkgs.nodejs}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
+    settings="${config.home.homeDirectory}/.pi/agent/settings.json"
+    package="npm:@ff-labs/pi-fff@0.10.3"
 
     if ! grep -Fq "$package" "$settings" 2>/dev/null; then
       pi install "$package"
