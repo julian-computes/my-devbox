@@ -12,6 +12,7 @@
     bat
     bottom
     lazygit
+    just
     tshark
     gcc
     gnumake

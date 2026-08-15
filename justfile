@@ -1,0 +1,2 @@
+reload:
+    ./scripts/bootstrap.sh
