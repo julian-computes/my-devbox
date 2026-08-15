@@ -27,7 +27,7 @@
   '';
 
   home.activation.installPlannotatorPiExtension = lib.hm.dag.entryAfter [ "installPiCodingAgent" ] ''
-    export PATH="${pkgs.bun}/bin:${pkgs.nodejs}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
+    export PATH="${pkgs.bun}/bin:${pkgs.nodejs}/bin:${pkgs.python3}/bin:${pkgs.gcc}/bin:${pkgs.gnumake}/bin:${config.home.homeDirectory}/.bun/bin:$PATH"
     settings="${config.home.homeDirectory}/.pi/agent/settings.json"
     package="npm:@plannotator/pi-extension@0.27.3"
 
