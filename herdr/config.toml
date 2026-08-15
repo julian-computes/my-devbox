@@ -1,5 +1,8 @@
 onboarding = false
 
+[ui]
+copy_on_select = false
+
 [keys]
 previous_workspace = "prefix+k"
 next_workspace = "prefix+j"
