@@ -12,6 +12,8 @@
     bun
     nodejs
     gh
+    claude-code
+    codex
     (callPackage ./herdr.nix { })
   ];
 }
