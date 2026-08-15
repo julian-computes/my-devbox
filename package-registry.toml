@@ -1,0 +1,14 @@
+# Packages whose upstream versions are pinned in this repository.
+# scripts/update.sh updates the version and source hash in each package file.
+
+[packages.codex]
+file = "codex.nix"
+repository = "openai/codex"
+tag_prefix = "rust-v"
+asset = "codex-aarch64-unknown-linux-musl.tar.gz"
+
+[packages.herdr]
+file = "herdr.nix"
+repository = "herdrdev/herdr"
+tag_prefix = "v"
+asset = "herdr-linux-aarch64"

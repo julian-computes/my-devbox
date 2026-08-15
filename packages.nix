@@ -9,11 +9,12 @@
     gcc
     gnumake
     python3
+    uv
     bun
     nodejs
     gh
     claude-code
-    codex
+    (callPackage ./codex.nix { })
     (callPackage ./herdr.nix { })
   ];
 }
