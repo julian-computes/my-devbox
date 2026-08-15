@@ -1,0 +1,10 @@
+{ pkgs, ... }:
+
+{
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users."@USERNAME@" = import ./home.nix;
+
+  programs.fish.enable = true;
+  users.users."@USERNAME@".shell = pkgs.fish;
+}
