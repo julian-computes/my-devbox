@@ -19,6 +19,13 @@ in
     systemd.services.home-manager-devbox = {
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
+      # SLIRP advertises IPv6 without Internet egress. Bun otherwise waits
+      # for that route instead of using the working IPv4 npm connection.
+      environment.BUN_FEATURE_FLAG_DISABLE_IPV6 = "1";
+      serviceConfig = {
+        RemainAfterExit = true;
+        TimeoutStartSec = lib.mkForce "10min";
+      };
     };
 
     users.users.devbox = {
