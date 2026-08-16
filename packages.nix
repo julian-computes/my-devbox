@@ -25,7 +25,7 @@
     bun
     nodejs
     gh
-    claude-code
+    (callPackage ./claude-code.nix { })
     (callPackage ./codex.nix { })
     (callPackage ./herdr.nix { })
   ];
