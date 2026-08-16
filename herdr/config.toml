@@ -2,6 +2,7 @@ onboarding = false
 
 [ui]
 copy_on_select = false
+prompt_new_tab_name = false
 
 [keys]
 new_tab = "prefix+t"
