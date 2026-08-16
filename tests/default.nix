@@ -13,7 +13,7 @@ in
     ];
 
     nixpkgs.config.allowUnfreePredicate = pkg:
-      builtins.elem (lib.getName pkg) [ "claude-code" ];
+      builtins.elem (lib.getName pkg) [ "claude-code" "cursor-cli" ];
 
     programs.fish.enable = true;
     systemd.services.home-manager-devbox = {

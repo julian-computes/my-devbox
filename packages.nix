@@ -27,6 +27,7 @@
     gh
     (callPackage ./claude-code.nix { })
     (callPackage ./codex.nix { })
+    (callPackage ./cursor-cli.nix { })
     (callPackage ./herdr.nix { })
   ];
 }
