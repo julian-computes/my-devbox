@@ -25,6 +25,7 @@
     bun
     nodejs
     gh
+    glab
     (callPackage ./claude-code.nix { })
     (callPackage ./codex.nix { })
     (callPackage ./cursor-cli.nix { })
