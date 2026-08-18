@@ -1,0 +1,11 @@
+# Copy to local/default.nix (gitignored), then run ./scripts/bootstrap.sh.
+# Use this module for checkout-only Home Manager extras, including packages.
+
+{ pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    # hello
+    # (callPackage ./my-tool.nix { })
+  ];
+}

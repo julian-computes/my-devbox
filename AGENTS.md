@@ -8,6 +8,9 @@ After changing configuration, always apply it from this repository before replyi
 
 When adding tools, update the installed-tool list in `agent-instructions.md`.
 
+Checkout-only skills and packages go in gitignored `local/`. See README.md.
+Do not commit `local/` or put those extras in tracked `skills/` or `packages.nix`.
+
 Herdr is a terminal multiplexer.
 
 For Herdr usage instructions, run `herdr --skill`.

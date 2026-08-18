@@ -3,7 +3,7 @@
 {
   imports = [
     ./packages.nix
-  ];
+  ] ++ lib.optional (builtins.pathExists ./local/default.nix) ./local/default.nix;
 
   # Bump only on a fresh home-manager install; see home-manager release notes.
   home.stateVersion = "25.11";
@@ -75,8 +75,20 @@
   };
 
   # Keep available-tool instructions and reusable skills accessible to coding agents.
+  # Gitignored skills in local/skills are merged in when that directory exists.
   home.file."AGENTS.md".source = ./agent-instructions.md;
-  home.file.".agents/skills".source = ./skills;
+  home.file.".agents/skills".source =
+    let
+      trackedSkills = ./skills;
+      localSkills = ./local/skills;
+    in
+    if builtins.pathExists localSkills then
+      pkgs.symlinkJoin {
+        name = "agent-skills";
+        paths = [ trackedSkills localSkills ];
+      }
+    else
+      trackedSkills;
 
   xdg.configFile."nvim" = {
     source = ./nvim;
