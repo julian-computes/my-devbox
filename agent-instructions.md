@@ -9,6 +9,7 @@ Useful command-line tools installed by this development environment:
 - Editors: `neovim`, `helix`, and `micro`.
 - Development: `python3`, `uv`, `bun`, `node`, `gcc`, `gnumake`, and `just`.
 - Databases: `sqlite3` and `duckdb`.
+- JSON: `jq`.
 - Network packet inspection: `tshark`.
 - Coding agents: `pi`, `claude`, and `codex`.
 - Terminal multiplexer: `herdr`. Run `herdr --skill` before using it.

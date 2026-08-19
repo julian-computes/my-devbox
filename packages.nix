@@ -22,6 +22,7 @@
     uv
     sqlite
     duckdb
+    jq
     bun
     nodejs
     gh
