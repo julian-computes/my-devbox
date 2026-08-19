@@ -75,20 +75,22 @@
   };
 
   # Keep available-tool instructions and reusable skills accessible to coding agents.
-  # Gitignored skills in local/skills are merged in when that directory exists.
+  # Copy skills into a writable directory. A home.file symlink would point at
+  # the Nix store and reject agent writes. Run after linkGeneration so the
+  # previous store symlink is removed first.
   home.file."AGENTS.md".source = ./agent-instructions.md;
-  home.file.".agents/skills".source =
-    let
-      trackedSkills = ./skills;
-      localSkills = ./local/skills;
-    in
-    if builtins.pathExists localSkills then
-      pkgs.symlinkJoin {
-        name = "agent-skills";
-        paths = [ trackedSkills localSkills ];
-      }
-    else
-      trackedSkills;
+  home.activation.installAgentSkills = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    skillsDir="${config.home.homeDirectory}/.agents/skills"
+    if [ -L "$skillsDir" ]; then
+      rm "$skillsDir"
+    fi
+    mkdir -p "$skillsDir"
+    ${pkgs.coreutils}/bin/cp -r --no-preserve=mode ${./skills}/. "$skillsDir/"
+    ${lib.optionalString (builtins.pathExists ./local/skills) ''
+      ${pkgs.coreutils}/bin/cp -r --no-preserve=mode ${./local/skills}/. "$skillsDir/"
+    ''}
+    ${pkgs.coreutils}/bin/chmod -R u+w "$skillsDir"
+  '';
 
   xdg.configFile."nvim" = {
     source = ./nvim;

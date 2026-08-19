@@ -41,8 +41,10 @@ Put a skill directory in `local/skills/`. Use the same layout as
 local/skills/my-skill/SKILL.md
 ```
 
-On activate, those skills are merged with the tracked `skills/` tree into
-`~/.agents/skills`. Choose names that do not collide with tracked skills.
+On activate, those skills are copied with the tracked `skills/` tree into
+`~/.agents/skills`. That directory is writable. Choose names that do not
+collide with tracked skills. Extra files created there are not source
+controlled; persist checkout-only skills in `local/skills/` instead.
 
 Do not put checkout-only skills in `skills/`. That directory is tracked.
 
